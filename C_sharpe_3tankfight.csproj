@@ -52,6 +52,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameFramework.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -65,6 +66,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -78,6 +80,165 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\Boss.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\BulletDown.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\BulletLeft.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\BulletRight.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\BulletUp.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\EXP1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\EXP2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\EXP3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\EXP4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\EXP5.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GameOver.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GEMAPPLE.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GEMARROW.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GEMBLOW.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GEMCLOCK.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GEMGRENADE.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GEMHAT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GEMSTAR.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GEMTANK.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GrayDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GrayLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GrayRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GrayUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GreenDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GreenLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GreenRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\GreenUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\MyTankDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\MyTankLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\MyTankRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\MyTankUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\QuickDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\QuickLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\QuickRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\QuickUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\SlowDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\SlowLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\SlowRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\SlowUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\Star1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\Star2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\Star3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\steel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\wall.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\YellowDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\YellowLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\YellowRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\YellowUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Sounds\add.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Sounds\blast.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Sounds\fire.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Sounds\hit.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Sounds\start.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
