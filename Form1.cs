@@ -13,6 +13,8 @@ namespace C_sharpe_3tankfight
 {
     public partial class Form1 : Form
     {
+
+        private Thread mainlogcontrol;
         public Form1()
         {
             InitializeComponent();
@@ -23,7 +25,7 @@ namespace C_sharpe_3tankfight
             //GDI Graphics Device Interface
             //FPS:  equal to the control frequency 
 
-           Thread mainlogcontrol= new Thread(new ThreadStart(GameMainThread));
+          mainlogcontrol= new Thread(new ThreadStart(GameMainThread));
             mainlogcontrol.Start();
         }
 
@@ -61,6 +63,11 @@ namespace C_sharpe_3tankfight
             bitmap.MakeTransparent(Color.Black);
             graphics.DrawImage(bitmap, new Point(150, 150));
 
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            mainlogcontrol.Abort();
         }
     }
 }
