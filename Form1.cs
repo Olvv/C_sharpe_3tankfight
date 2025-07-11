@@ -15,17 +15,24 @@ namespace C_sharpe_3tankfight
     {
 
         private Thread mainlogcontrol;
+        private Graphics graph;
         public Form1()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+
+
             //this.StartPosition= FormStartPosition.Manual;
             //this.Location = new Point(100,100);
 
             //GDI Graphics Device Interface
             //FPS:  equal to the control frequency 
 
-          mainlogcontrol= new Thread(new ThreadStart(GameMainThread));
+
+            graph = this.CreateGraphics();
+            GameFramework.graph= graph;
+
+            mainlogcontrol = new Thread(new ThreadStart(GameMainThread));
             mainlogcontrol.Start();
         }
 
@@ -38,6 +45,8 @@ namespace C_sharpe_3tankfight
 
             while (true)
             {
+               GameFramework.graph.Clear(Color.Black);
+
                 //update the game state
                 GameFramework.Update();// 60 FPS is enough for most games
                 Thread.Sleep(sleepTime); // Sleep for the calculated time to maintain the frame rate
@@ -49,19 +58,19 @@ namespace C_sharpe_3tankfight
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
 
-            #region how to paint string and line
-            Graphics graphics = this  .CreateGraphics();
-            Pen pen = new Pen(Color.Black);
-            graphics.DrawLine(pen, new Point(0, 0), new Point(100, 100));
-            graphics.DrawString("you can do anything you want", new Font("Arial", 16), Brushes.Black, new PointF(100, 120));
-            #endregion
+            //#region how to paint string and line
+            //Graphics graphics = this  .CreateGraphics();
+            //Pen pen = new Pen(Color.Black);
+            //graphics.DrawLine(pen, new Point(0, 0), new Point(100, 100));
+            //graphics.DrawString("you can do anything you want", new Font("Arial", 16), Brushes.Black, new PointF(100, 120));
+            //#endregion
 
 
-            Image image = Properties.Resources.Boss;
-            graphics.DrawImage(image,200,200);
-            Bitmap bitmap=Properties.Resources.Star1;
-            bitmap.MakeTransparent(Color.Black);
-            graphics.DrawImage(bitmap, new Point(150, 150));
+            //Image image = Properties.Resources.Boss;
+            //graphics.DrawImage(image,200,200);
+            //Bitmap bitmap=Properties.Resources.Star1;
+            //bitmap.MakeTransparent(Color.Black);
+            //graphics.DrawImage(bitmap, new Point(150, 150));
 
         }
 
