@@ -25,7 +25,7 @@ namespace C_sharpe_3tankfight
 
         public int Speed {  get; set; }
 
-        public Direciton Dir { get; set; }
+        public Direciton Dir { get; set; } 
 
         protected override Image GetImage()
         {
