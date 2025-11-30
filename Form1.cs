@@ -15,7 +15,8 @@ namespace C_sharpe_3tankfight
     {
 
         private Thread mainlogcontrol;
-        private Graphics graph;
+        private static Graphics window_graph;
+        private static Bitmap tempBmp;
         public Form1()
         {
             InitializeComponent();
@@ -29,8 +30,12 @@ namespace C_sharpe_3tankfight
             //FPS:  equal to the control frequency 
 
 
-            graph = this.CreateGraphics();
-            GameFramework.graph= graph;
+            window_graph = this.CreateGraphics();
+
+            tempBmp = new Bitmap(450,450);
+            Graphics bmpG = Graphics.FromImage(tempBmp);
+            GameFramework.graph = bmpG;
+
 
             mainlogcontrol = new Thread(new ThreadStart(GameMainThread));
             mainlogcontrol.Start();
@@ -48,7 +53,9 @@ namespace C_sharpe_3tankfight
                GameFramework.graph.Clear(Color.Black);
 
                 //update the game state
+          
                 GameFramework.Update();// 60 FPS is enough for most games
+                window_graph.DrawImage(tempBmp, 0, 0);
                 Thread.Sleep(sleepTime); // Sleep for the calculated time to maintain the frame rate
 
             }
@@ -77,6 +84,16 @@ namespace C_sharpe_3tankfight
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             mainlogcontrol.Abort();
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            GameObjectManager.keydonw(e);
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            GameObjectManager.keyup(e);
         }
     }
 }

@@ -56,6 +56,7 @@
     </Compile>
     <Compile Include="GameFramework.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameObjectManager.cs" />
     <Compile Include="Moving_Obj.cs" />
     <Compile Include="MyTank.cs" />
     <Compile Include="Program.cs" />

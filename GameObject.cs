@@ -14,6 +14,7 @@ namespace C_sharpe_3tankfight
         public int Y_coordinate { get; set; }
 
         protected abstract Image GetImage();
+        //private  Image GetImage（）；
       
 
         public void DrawSelf()
@@ -23,5 +24,10 @@ namespace C_sharpe_3tankfight
             graph.DrawImage(GetImage(), X_coordinate, Y_coordinate);
 
         }
+        public virtual void Update()
+        {
+            DrawSelf();
+        }
+
     }
 }

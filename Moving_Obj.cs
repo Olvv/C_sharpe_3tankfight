@@ -23,7 +23,7 @@ namespace C_sharpe_3tankfight
         public Bitmap Bitmap_left { get; set; }
         public Bitmap Bitmap_right { get; set; }
 
-        public int Speed {  get; set; }
+        public int Speed {  get; set; }// use  pixel as unit
 
         public Direciton Dir { get; set; } 
 
