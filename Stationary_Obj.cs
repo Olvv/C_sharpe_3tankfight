@@ -12,7 +12,14 @@ namespace C_sharpe_3tankfight
      */
     internal class Stationary_Obj : GameObject
     {
-        public Image Image { get; set; }
+        private Image img;
+        public Image Image { get { return img; } 
+            set { img = value; 
+                Width= img.Width;
+                Height= img.Height;
+            }
+           
+        }
 
         protected override Image GetImage()
         {

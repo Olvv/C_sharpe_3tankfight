@@ -25,7 +25,30 @@ namespace C_sharpe_3tankfight
 
         public int Speed {  get; set; }// use  pixel as unit
 
-        public Direciton Dir { get; set; } 
+        private Direciton dir;
+        public Direciton Dir { get{ return dir; }
+            set { 
+            dir = value;
+                Bitmap bitmap=null;
+                switch (dir)
+                {
+                    case Direciton.Up:
+                        bitmap = Bitmap_up;
+                        break;
+                    case Direciton.Down:
+                        bitmap = Bitmap_down;
+                        break;
+                    case Direciton.Left:
+                        bitmap = Bitmap_left;
+                        break;
+                    case Direciton.Right:
+                        bitmap = Bitmap_right;
+                        break;
+                }
+                //Width = bitmap.Width;
+                //Height = bitmap.Height;
+            }
+        } 
 
         protected override Image GetImage()
         {
@@ -47,7 +70,8 @@ namespace C_sharpe_3tankfight
                     bitmap = Bitmap_right;
                     break;
             }
-
+            Width = bitmap.Width;
+            Height = bitmap.Height;
             bitmap.MakeTransparent(Color.Black);
             return bitmap;
         }

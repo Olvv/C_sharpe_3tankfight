@@ -13,6 +13,9 @@ namespace C_sharpe_3tankfight
         public int X_coordinate { get; set; }
         public int Y_coordinate { get; set; }
 
+        public int Width { get; set; }
+        public int Height { get; set; }
+
         protected abstract Image GetImage();
         //private  Image GetImage（）；
       
@@ -28,6 +31,12 @@ namespace C_sharpe_3tankfight
         {
             DrawSelf();
         }
+        public Rectangle GetRectangle()
+        {
+            Rectangle rectangle = new Rectangle(X_coordinate, Y_coordinate, Width,Height);
+            return rectangle;
 
+
+        }
     }
 }

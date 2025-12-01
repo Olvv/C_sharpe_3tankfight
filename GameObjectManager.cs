@@ -32,6 +32,39 @@ namespace C_sharpe_3tankfight
             myTank.Update();
 
         }
+
+        public static Stationary_Obj IsCollidedWall(Rectangle rt)
+        {
+
+            foreach (Stationary_Obj wall in Wall_List)
+            {
+               if(wall.GetRectangle().IntersectsWith(rt))
+                {
+                    return wall;
+                }
+                    }
+            return null;
+        }
+
+
+
+        public static Stationary_Obj IsCollidedSteel(Rectangle rt)
+        {
+
+            foreach (Stationary_Obj steel in Steel_List)
+            {
+                if (steel.GetRectangle().IntersectsWith(rt))
+                {
+                    return steel;
+                }
+            }
+            return null;
+        }
+
+        public static bool IsCollidedBoss(Rectangle rt)
+        {
+            return Boss.GetRectangle().IntersectsWith(rt);
+        }
         public static void CreateMap()
         {
             CreateWall(1, 1, 5,Resources.wall, Wall_List);

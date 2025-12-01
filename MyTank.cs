@@ -1,6 +1,7 @@
 ﻿using C_sharpe_3tankfight.Properties;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,10 +27,90 @@ namespace C_sharpe_3tankfight
 
         public override void Update()
         {
+            MoveCheck();
             move();
             base.Update();
         }
 
+        public void MoveCheck()
+        {
+#region 检查有没有超过窗体边界
+            if (Dir==Direciton.Up)
+            {
+                if (Y_coordinate - Speed < 0)
+                {
+                    IsMoving= false;
+                    return;
+                }
+                
+            }
+            if (Dir==Direciton.Down)
+            {
+                if (Y_coordinate+Speed+Height>450)
+                {
+                    IsMoving = false;
+                    return;
+                }
+            }
+            if (Dir == Direciton.Left)
+            {
+                if (X_coordinate - Speed <0)
+                {
+                    IsMoving = false;
+                    return;
+                }
+            }
+            if (Dir == Direciton.Right)
+            {
+                if (X_coordinate + Speed+Width >450)
+                {
+                    IsMoving = false;
+                    return;
+                }
+            }
+            #endregion
+
+            //检查有没有和其他元素发生碰撞
+            Rectangle rect = GetRectangle();
+
+
+            switch (Dir)
+            {
+                case Direciton.Up:
+                    rect.Y-= Speed;
+                    break;
+                case Direciton.Down:
+                    rect.Y += Speed;
+                    break;
+                case Direciton.Left:
+                    rect.X -= Speed;
+                    break;
+                case Direciton.Right:
+                    rect.X += Speed;
+                    break;
+
+
+            }
+
+            if (GameObjectManager.IsCollidedWall(rect)!=null)
+            {
+                IsMoving = false;
+                return;
+            }
+
+            if (GameObjectManager.IsCollidedSteel(rect) != null)
+            {
+                IsMoving = false;
+                return;
+            }
+
+            if (GameObjectManager.IsCollidedBoss(rect))
+            {
+                IsMoving = false;
+                return;
+            }
+         
+        }
 
         private void move()
         {
