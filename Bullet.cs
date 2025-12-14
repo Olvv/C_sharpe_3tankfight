@@ -18,26 +18,23 @@ namespace C_sharpe_3tankfight
         public Source bulletSource { get; set; }
         public Bullet(int x, int y, int speed, Direciton bullet_dir,Source bulletSource)
         {
-            
-            this.X_coordinate = x;
-            this.Y_coordinate = y;
-            this.Speed = speed;
-            this.Dir = bullet_dir;
-            this.Height=Height;
-            this.Width=Width;
             Bitmap_down = Resources.BulletDown;
             Bitmap_left = Resources.BulletLeft;
             Bitmap_right = Resources.BulletRight;
             Bitmap_up = Resources.BulletUp;
-            this.bulletSource = bulletSource;
-
+            this.Dir = bullet_dir;
+            this.X_coordinate = x;
+            this.Y_coordinate = y;
+            this.Speed = speed;
             this.X_coordinate -= Width / 2;
             this.Y_coordinate -= Height / 2;
+
+
+            this.bulletSource = bulletSource;
+
+        
         }
 
-        public override void Update()
-        {
-            base.Update();
-        }
+   
     }
 }

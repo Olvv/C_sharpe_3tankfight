@@ -18,7 +18,8 @@ namespace C_sharpe_3tankfight
         private static List<Bullet> Bullet_List = new List<Bullet>();
         private static Stationary_Obj Boss;
         private static MyTank myTank;
-     
+        private static Bullet bullet;
+
         private static int enemyBornSpeed = 60;
         private static int enemyBornCount = 60;
          private static Point[] points = new Point[3];
@@ -68,7 +69,7 @@ namespace C_sharpe_3tankfight
 
         public static void CreateBullet(int x, int y,Source tag, Direciton dir)
         {
-            Bullet bullet = new Bullet(x, y, 5, dir,tag);
+             bullet = new Bullet(x, y, 5, dir,tag);
             Bullet_List.Add(bullet);
         }
 

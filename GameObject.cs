@@ -16,9 +16,11 @@ namespace C_sharpe_3tankfight
         public int Width { get; set; }
         public int Height { get; set; }
 
-        protected abstract Image GetImage();
-        //private  Image GetImage（）；
+
       
+        protected abstract Image GetImage();
+        //private Image GetImage();
+
 
         public virtual void DrawSelf()
         {

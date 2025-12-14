@@ -21,11 +21,12 @@ namespace C_sharpe_3tankfight
             this.X_coordinate = x;
             this.Y_coordinate = y;
             this.Speed = speed;
-            this.Dir = Direciton.Down;
+          
             Bitmap_down = Bitmapdown; 
             Bitmap_left = Bitmapleft;
             Bitmap_right = Bitmapright;
             Bitmap_up = Bitmapup;
+            this.Dir = Direciton.Down;
         }
 
 

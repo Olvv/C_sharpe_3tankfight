@@ -29,7 +29,7 @@ namespace C_sharpe_3tankfight
         public Direciton Dir { get{ return dir; }
             set { 
             dir = value;
-                Bitmap bitmap=null;
+                Bitmap bitmap= null;
                 switch (dir)
                 {
                     case Direciton.Up:
@@ -48,9 +48,12 @@ namespace C_sharpe_3tankfight
 
                 //lock (_lock)
                 //{
-
-                //    //Width = bitmap.Width;
-                //    //Height = bitmap.Height;
+                if (bitmap != null)
+                {
+                    Width = bitmap.Width;
+                    Height = bitmap.Height;
+                }
+               
                 //}
 
             }

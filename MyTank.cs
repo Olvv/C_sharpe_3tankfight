@@ -18,11 +18,13 @@ namespace C_sharpe_3tankfight
             this.X_coordinate = x;
             this.Y_coordinate = y;
             this.Speed = speed;
-            this.Dir = Direciton.Up;
-            Bitmap_down=Resources.MyTankDown;
+            
+           
+            Bitmap_down =Resources.MyTankDown;
             Bitmap_left=Resources.MyTankLeft;
             Bitmap_right=Resources.MyTankRight;
             Bitmap_up=Resources.MyTankUp;
+            this.Dir = Direciton.Up;
         }
 
         public override void Update()
