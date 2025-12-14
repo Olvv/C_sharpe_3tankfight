@@ -34,19 +34,19 @@ namespace C_sharpe_3tankfight
 
         public void MoveCheck()
         {
-#region 检查有没有超过窗体边界
-            if (Dir==Direciton.Up)
+            #region 检查有没有超过窗体边界
+            if (Dir == Direciton.Up)
             {
                 if (Y_coordinate - Speed < 0)
                 {
-                    IsMoving= false;
+                    IsMoving = false;
                     return;
                 }
-                
+
             }
-            if (Dir==Direciton.Down)
+            if (Dir == Direciton.Down)
             {
-                if (Y_coordinate+Speed+Height>450)
+                if (Y_coordinate + Speed + Height > 450)
                 {
                     IsMoving = false;
                     return;
@@ -54,7 +54,7 @@ namespace C_sharpe_3tankfight
             }
             if (Dir == Direciton.Left)
             {
-                if (X_coordinate - Speed <0)
+                if (X_coordinate - Speed < 0)
                 {
                     IsMoving = false;
                     return;
@@ -62,7 +62,7 @@ namespace C_sharpe_3tankfight
             }
             if (Dir == Direciton.Right)
             {
-                if (X_coordinate + Speed+Width >450)
+                if (X_coordinate + Speed + Width > 450)
                 {
                     IsMoving = false;
                     return;
@@ -77,7 +77,7 @@ namespace C_sharpe_3tankfight
             switch (Dir)
             {
                 case Direciton.Up:
-                    rect.Y-= Speed;
+                    rect.Y -= Speed;
                     break;
                 case Direciton.Down:
                     rect.Y += Speed;
@@ -92,7 +92,7 @@ namespace C_sharpe_3tankfight
 
             }
 
-            if (GameObjectManager.IsCollidedWall(rect)!=null)
+            if (GameObjectManager.IsCollidedWall(rect) != null)
             {
                 IsMoving = false;
                 return;
@@ -109,30 +109,30 @@ namespace C_sharpe_3tankfight
                 IsMoving = false;
                 return;
             }
-         
+
         }
 
         private void move()
         {
             if (IsMoving == false)
-            { 
-            return;
+            {
+                return;
             }
             switch (Dir)
             {
                 case Direciton.Up:
-                    Y_coordinate-=Speed;
-                    break; 
+                    Y_coordinate -= Speed;
+                    break;
                 case Direciton.Down:
-                    Y_coordinate+=Speed;
+                    Y_coordinate += Speed;
                     break;
-                 case Direciton.Left:
-                    X_coordinate-=Speed;
+                case Direciton.Left:
+                    X_coordinate -= Speed;
                     break;
-                 case Direciton.Right:
-                    X_coordinate+=Speed;        
-                    break;  
-                        
+                case Direciton.Right:
+                    X_coordinate += Speed;
+                    break;
+
 
             }
         }
@@ -156,10 +156,40 @@ namespace C_sharpe_3tankfight
                     Dir= Direciton.Left;
                     IsMoving = true;
                     break;
+                case Keys.Space:
+                    //发射子弹
+                    Attack();
+                    break;
 
 
             }
 
+        }
+        private void Attack()
+        {
+            int x = this.X_coordinate;
+            int y = this.Y_coordinate;
+            switch (Dir)
+            {
+                case Direciton.Up:
+                    x = x + Width / 2;
+                     break;
+                case Direciton.Down:
+                    x=x +Width / 2;
+                    y += Height;
+                    break;
+                case Direciton.Left:
+                    y = y + Height / 2;
+                    break;
+                case Direciton.Right:
+                    x += Width;
+                    y = y + Height / 2;
+                    break;
+
+
+            }
+
+              GameObjectManager.CreateBullet(x,y, Source.MyTank,Dir);
         }
         public  void keyup(KeyEventArgs args)
         {

@@ -20,7 +20,7 @@ namespace C_sharpe_3tankfight
         //private  Image GetImage（）；
       
 
-        public void DrawSelf()
+        public virtual void DrawSelf()
         {
             Graphics graph=GameFramework.graph;
 

@@ -1,12 +1,167 @@
-﻿using System;
+﻿using C_sharpe_3tankfight.Properties;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace C_sharpe_3tankfight
 {
-    internal class Enemy_Tank:Moving_Obj
+
+  
+    class Enemy_Tank:Moving_Obj
     {
+
+        private Random updir = new Random();
+        public Enemy_Tank(int x, int y, int speed, Bitmap Bitmapdown, Bitmap Bitmapup, Bitmap Bitmapleft, Bitmap Bitmapright)
+        {
+            //IsMoving = true;
+            this.X_coordinate = x;
+            this.Y_coordinate = y;
+            this.Speed = speed;
+            this.Dir = Direciton.Down;
+            Bitmap_down = Bitmapdown; 
+            Bitmap_left = Bitmapleft;
+            Bitmap_right = Bitmapright;
+            Bitmap_up = Bitmapup;
+        }
+
+
+
+
+        public override void Update()
+        {
+            MoveCheck();
+            move();
+            base.Update();
+        }
+
+        public void MoveCheck()
+        {
+            #region 检查有没有超过窗体边界
+            if (Dir == Direciton.Up)
+            {
+                if (Y_coordinate - Speed < 0)
+                {
+                    ChangeDirection();
+                    return;
+                }
+
+            }
+            if (Dir == Direciton.Down)
+            {
+                if (Y_coordinate + Speed + Height > 450)
+                {
+                    ChangeDirection();
+                    return;
+                }
+            }
+            if (Dir == Direciton.Left)
+            {
+                if (X_coordinate - Speed < 0)
+                {
+                    ChangeDirection();
+                    return;
+                }
+            }
+            if (Dir == Direciton.Right)
+            {
+                if (X_coordinate + Speed + Width > 450)
+                {
+                    ChangeDirection();
+                    return;
+                }
+            }
+            #endregion
+
+            //检查有没有和其他元素发生碰撞
+            Rectangle rect = GetRectangle();
+
+
+            switch (Dir)
+            {
+                case Direciton.Up:
+                    rect.Y -= Speed;
+                    break;
+                case Direciton.Down:
+                    rect.Y += Speed;
+                    break;
+                case Direciton.Left:
+                    rect.X -= Speed;
+                    break;
+                case Direciton.Right:
+                    rect.X += Speed;
+                    break;
+
+
+            }
+
+            if (GameObjectManager.IsCollidedWall(rect) != null)
+            {
+                ChangeDirection();
+                return;
+            }
+
+            if (GameObjectManager.IsCollidedSteel(rect) != null)
+            {
+                ChangeDirection();
+                return;
+            }
+
+            if (GameObjectManager.IsCollidedBoss(rect))
+            {
+                ChangeDirection();
+                return;
+            }
+
+        }
+
+
+        private void ChangeDirection()
+        {
+            //get current direciton 
+
+            while (true)
+            {
+                Direciton dir = (Direciton)updir.Next(0, 4);
+                if (dir == Dir)
+                {
+                    continue;
+
+                }
+                {
+                    Dir = dir; 
+                    break;
+                }
+            }
+            MoveCheck();
+        }
+
+        private void move()
+        {
+            //if (IsMoving == false)
+            //{
+            //    return;
+            //}
+            switch (Dir)
+            {
+                case Direciton.Up:
+                    Y_coordinate -= Speed;
+                    break;
+                case Direciton.Down:
+                    Y_coordinate += Speed;
+                    break;
+                case Direciton.Left:
+                    X_coordinate -= Speed;
+                    break;
+                case Direciton.Right:
+                    X_coordinate += Speed;
+                    break;
+
+
+            }
+        }
     }
 }

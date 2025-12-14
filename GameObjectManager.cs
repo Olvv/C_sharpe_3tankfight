@@ -14,12 +14,20 @@ namespace C_sharpe_3tankfight
     {
         private static List<Stationary_Obj> Wall_List = new List<Stationary_Obj>();
         private static List<Stationary_Obj> Steel_List = new List<Stationary_Obj>();
+        private static List<Enemy_Tank> Enemytank_List = new List<Enemy_Tank>();
+        private static List<Bullet> Bullet_List = new List<Bullet>();
         private static Stationary_Obj Boss;
         private static MyTank myTank;
+     
+        private static int enemyBornSpeed = 60;
+        private static int enemyBornCount = 60;
+         private static Point[] points = new Point[3];
+
 
 
         public static void Update()
         {
+            EnemyBorn();
             foreach (Stationary_Obj wallbick in Wall_List)
             {
                 wallbick.Update();
@@ -28,9 +36,104 @@ namespace C_sharpe_3tankfight
             {
                 steels.Update();
             }
+
+            foreach(Enemy_Tank tank in Enemytank_List)
+            {
+                tank.Update();
+            }
+
+            foreach (Bullet bullet in Bullet_List)
+            {
+                bullet.Update();
+            }
             Boss.Update();
             myTank.Update();
 
+         
+
+        }
+
+
+        public static void Start()
+        {
+           
+            points[0].X = 0;
+            points[0].Y = 0;
+            points[1].X = 7*30;
+            points[1].Y = 0;
+            points[2].X = 14*30;    
+            points[2].Y = 0;
+        }
+
+
+        public static void CreateBullet(int x, int y,Source tag, Direciton dir)
+        {
+            Bullet bullet = new Bullet(x, y, 5, dir,tag);
+            Bullet_List.Add(bullet);
+        }
+
+
+
+
+        private static void EnemyBorn()
+        {
+            enemyBornCount++;
+            if (enemyBornCount <enemyBornSpeed)
+            {
+              return;
+            }
+            //generate enemy
+            //Random rd = new Random();
+           Random rd = new Random();
+        int index = rd.Next(0, 3);
+            Point position = points[index];
+            int enemyType = rd.Next(1, 5);
+            switch(enemyType)
+            {
+                case 1:
+                    CreateEnemyTank1(position.X, position.Y);
+                    break;
+                case 2:
+                    CreateEnemyTank2(position.X, position.Y);
+                    break;
+                case 3:
+                    CreateEnemyTank3(position.X, position.Y);
+                    break;
+                case 4:
+                    CreateEnemyTank4(position.X, position.Y);
+                    break;
+
+            }
+
+
+            enemyBornCount = 0;
+        }
+
+
+
+
+        private static void CreateEnemyTank1(int x, int y)
+        { 
+            Enemy_Tank tank =new Enemy_Tank(x,y,3,Resources.GrayDown,Resources.GrayUp,Resources.GrayLeft,Resources.GrayRight);
+            Enemytank_List.Add(tank);
+
+        }
+
+        private static void CreateEnemyTank2(int x, int y)
+        {
+            Enemy_Tank tank = new Enemy_Tank(x, y, 3, Resources.GreenDown, Resources.GreenUp, Resources.GreenLeft, Resources.GreenRight);
+            Enemytank_List.Add(tank);
+        }
+
+        private static void CreateEnemyTank3(int x, int y)
+        {
+            Enemy_Tank tank = new Enemy_Tank(x, y, 5, Resources.QuickDown, Resources.QuickUp, Resources.QuickLeft, Resources.QuickRight);
+            Enemytank_List.Add(tank);
+        }
+        private static void CreateEnemyTank4(int x, int y)
+        {
+            Enemy_Tank tank = new Enemy_Tank(x, y, 2, Resources.SlowDown, Resources.SlowUp, Resources.SlowLeft, Resources.SlowRight);
+            Enemytank_List.Add(tank);
         }
 
         public static Stationary_Obj IsCollidedWall(Rectangle rt)

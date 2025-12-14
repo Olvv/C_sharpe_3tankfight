@@ -14,6 +14,7 @@ namespace C_sharpe_3tankfight
         public static void Start()
         {
             //prepare the game environment before game begin
+            GameObjectManager.Start();
             GameObjectManager.CreateMap();
             GameObjectManager.CreateMyTank();
         }

@@ -17,12 +17,12 @@ namespace C_sharpe_3tankfight
     }
     internal class Moving_Obj:GameObject
     {
-
+        private Object _lock=new Object();
         public Bitmap Bitmap_up {  get; set; }
         public Bitmap Bitmap_down { get; set; }
         public Bitmap Bitmap_left { get; set; }
         public Bitmap Bitmap_right { get; set; }
-
+        //public bool IsMoving { get; set; }
         public int Speed {  get; set; }// use  pixel as unit
 
         private Direciton dir;
@@ -45,8 +45,14 @@ namespace C_sharpe_3tankfight
                         bitmap = Bitmap_right;
                         break;
                 }
-                //Width = bitmap.Width;
-                //Height = bitmap.Height;
+
+                //lock (_lock)
+                //{
+
+                //    //Width = bitmap.Width;
+                //    //Height = bitmap.Height;
+                //}
+
             }
         } 
 
@@ -70,10 +76,14 @@ namespace C_sharpe_3tankfight
                     bitmap = Bitmap_right;
                     break;
             }
+
+
             Width = bitmap.Width;
             Height = bitmap.Height;
             bitmap.MakeTransparent(Color.Black);
             return bitmap;
         }
+
+
     }
 }
