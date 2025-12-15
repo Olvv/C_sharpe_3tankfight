@@ -31,7 +31,7 @@ namespace C_sharpe_3tankfight
             Bitmap_right=Resources.MyTankRight;
             Bitmap_up=Resources.MyTankUp;
             this.Dir = Direciton.Up;
-            HP = 4;
+            HP = 5;
         }
 
         public override void Update()
