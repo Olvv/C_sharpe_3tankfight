@@ -16,6 +16,7 @@ namespace C_sharpe_3tankfight
         private static List<Stationary_Obj> Steel_List = new List<Stationary_Obj>();
         private static List<Enemy_Tank> Enemytank_List = new List<Enemy_Tank>();
         private static List<Bullet> Bullet_List = new List<Bullet>();
+        private static List<explosion> explosions_List=new List<explosion>();
         private static Stationary_Obj Boss;
         private static MyTank myTank;
         private static Bullet bullet; 
@@ -45,11 +46,19 @@ namespace C_sharpe_3tankfight
             }
 
             ChecandDestroyBullet();
-                foreach (Bullet bullet in Bullet_List)
-                {
-                    bullet.Update();
-                }
-            ChecandDestroyBullet();
+            foreach (Bullet bullet in Bullet_List)
+            {
+                bullet.Update();
+             }
+           
+            foreach(explosion exp in explosions_List)
+            {
+                exp.Update();
+            }
+            ChecandDestroyExp();
+
+
+
             Boss.Update();
             myTank.Update();
 
@@ -93,6 +102,33 @@ namespace C_sharpe_3tankfight
             }
 
         }
+
+
+
+        public static void ChecandDestroyExp()
+        {
+            List<explosion> NeedToDestroy = new List<explosion>();
+            foreach (explosion exp in explosions_List)
+            {
+                if (exp.isDestory_explosion == true)
+                {
+                    NeedToDestroy.Add(exp);
+                }
+            }
+            foreach (explosion exp in NeedToDestroy)
+            {
+                explosions_List.Remove(exp);
+            }
+
+        }
+
+
+        public static void CreateExplosion( int x,int y)
+        {
+            explosion exp = new explosion(x, y);
+            explosions_List.Add(exp);
+        }
+
 
         public static void DestroyWall(Stationary_Obj wall)
         {
@@ -207,6 +243,15 @@ namespace C_sharpe_3tankfight
 
 
         }
+        public static MyTank IsCollidedMyTank(Rectangle rt)
+        {
+            if(myTank.GetRectangle().IntersectsWith(rt)) return myTank;
+
+            else return null;
+
+
+        }
+
         public static void DestroyTank(Enemy_Tank tank)
         {
 

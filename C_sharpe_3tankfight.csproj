@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Bullet.cs" />
     <Compile Include="Enemy_Tank.cs" />
+    <Compile Include="explosion.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -15,6 +15,10 @@ namespace C_sharpe_3tankfight
     {
         private Object _lock = new Object();
         private Random updir = new Random();
+        public int ChangeDirSpeed { get; set; }
+        private int ChangeDirCount=0;
+        public int attackspeed { get; set; }
+        private int attackCount=0;
         public Enemy_Tank(int x, int y, int speed, Bitmap Bitmapdown, Bitmap Bitmapup, Bitmap Bitmapleft, Bitmap Bitmapright)
         {
             //IsMoving = true;
@@ -27,6 +31,8 @@ namespace C_sharpe_3tankfight
             Bitmap_right = Bitmapright;
             Bitmap_up = Bitmapup;
             this.Dir = Direciton.Down;
+            attackspeed = 10;
+            ChangeDirSpeed=20;
         }
 
         public override void DrawSelf()
@@ -42,7 +48,10 @@ namespace C_sharpe_3tankfight
         {
             MoveCheck();
             move();
+            AttackCheck();
+            AutoChangeDirection();
             base.Update();
+            
         }
 
         public void MoveCheck()
@@ -124,7 +133,18 @@ namespace C_sharpe_3tankfight
             }
 
         }
+        private void AutoChangeDirection()
+        {
+            ChangeDirCount++;
+             if (ChangeDirCount < ChangeDirSpeed)
+            { 
+            return;
+              }
+             ChangeDirection();
+            ChangeDirCount = 0; 
 
+
+        }
 
         private void ChangeDirection()
         {
@@ -169,6 +189,44 @@ namespace C_sharpe_3tankfight
 
 
             }
+        }
+
+        private void AttackCheck()
+        {
+            attackCount++;
+            if (attackCount < attackspeed)
+            {
+                return;
+            }
+            Attack();
+            attackCount = 0;
+        }
+
+        private void Attack()
+        {
+            int x = this.X_coordinate;
+            int y = this.Y_coordinate;
+            switch (Dir)
+            {
+                case Direciton.Up:
+                    x = x + Width / 2;
+                    break;
+                case Direciton.Down:
+                    x = x + Width / 2;
+                    y += Height;
+                    break;
+                case Direciton.Left:
+                    y = y + Height / 2;
+                    break;
+                case Direciton.Right:
+                    x += Width;
+                    y = y + Height / 2;
+                    break;
+
+
+            }
+
+            GameObjectManager.CreateBullet(x, y, Source.EnemyTank, Dir);
         }
     }
 }

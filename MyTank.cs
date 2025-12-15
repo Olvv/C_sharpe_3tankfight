@@ -12,19 +12,26 @@ namespace C_sharpe_3tankfight
     internal class MyTank:Moving_Obj
     {
         public bool IsMoving { get; set; }
+
+        public int HP { get; set; }
+
+        private int originalX;
+        private int originalY;
         public MyTank(int x, int y, int speed ) 
         {
             IsMoving= false;
             this.X_coordinate = x;
             this.Y_coordinate = y;
             this.Speed = speed;
-            
-           
+            originalX = x;
+            originalY = y;
+
             Bitmap_down =Resources.MyTankDown;
             Bitmap_left=Resources.MyTankLeft;
             Bitmap_right=Resources.MyTankRight;
             Bitmap_up=Resources.MyTankUp;
             this.Dir = Direciton.Up;
+            HP = 4;
         }
 
         public override void Update()
@@ -218,6 +225,20 @@ namespace C_sharpe_3tankfight
             }
 
         }
+        public void Takedamage()
+        {
+            HP--;
+            if (HP <= 0)
+            {
+                X_coordinate = originalX;
+                Y_coordinate = originalY;
+                HP = 4;
+            }
 
+        }
+        //public static implicit operator MyTank(MyTank v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

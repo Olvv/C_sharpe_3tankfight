@@ -102,11 +102,15 @@ namespace C_sharpe_3tankfight
             rect.Height = 3;
             rect.Width = 3;
 
+
+            int X_Explosion = this.X_coordinate + Width / 2;
+            int Y_Explosion = this.Y_coordinate + Height / 2;
             Stationary_Obj wall = null;
             if((wall=GameObjectManager.IsCollidedWall(rect) )!= null)
             {
                IsbulletDestory=true ;
                 GameObjectManager.DestroyWall(wall);
+                GameObjectManager.CreateExplosion(X_Explosion, Y_Explosion);
                 return;
             }
 
@@ -114,6 +118,7 @@ namespace C_sharpe_3tankfight
             {
                 //ChangeDirection();
                 IsbulletDestory = true;
+                GameObjectManager.CreateExplosion(X_Explosion, Y_Explosion);
                 return;
             }
 
@@ -131,9 +136,22 @@ namespace C_sharpe_3tankfight
                 {
                     IsbulletDestory=true;
                     GameObjectManager.DestroyTank(tank);
+                    GameObjectManager.CreateExplosion(X_Explosion, Y_Explosion);
                     return;
                 }
                 return;
+            }
+            if (bulletSource == Source.EnemyTank)
+            {
+                MyTank myTank = null;   
+                if ((myTank=GameObjectManager.IsCollidedMyTank(rect))!=null)
+                    {
+                    IsbulletDestory=true;
+                    GameObjectManager.CreateExplosion(X_Explosion, Y_Explosion);
+                    myTank.Takedamage();
+                    return;
+                }
+
             }
 
         }
