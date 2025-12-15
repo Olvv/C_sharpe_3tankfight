@@ -18,7 +18,8 @@ namespace C_sharpe_3tankfight
         private static List<Bullet> Bullet_List = new List<Bullet>();
         private static Stationary_Obj Boss;
         private static MyTank myTank;
-        private static Bullet bullet;
+        private static Bullet bullet; 
+
 
         private static int enemyBornSpeed = 60;
         private static int enemyBornCount = 60;
@@ -43,10 +44,12 @@ namespace C_sharpe_3tankfight
                 tank.Update();
             }
 
-            foreach (Bullet bullet in Bullet_List)
-            {
-                bullet.Update();
-            }
+            ChecandDestroyBullet();
+                foreach (Bullet bullet in Bullet_List)
+                {
+                    bullet.Update();
+                }
+            ChecandDestroyBullet();
             Boss.Update();
             myTank.Update();
 
@@ -70,12 +73,33 @@ namespace C_sharpe_3tankfight
         public static void CreateBullet(int x, int y,Source tag, Direciton dir)
         {
              bullet = new Bullet(x, y, 5, dir,tag);
-            Bullet_List.Add(bullet);
+           
+                Bullet_List.Add(bullet);
+           
+        }
+        public static void ChecandDestroyBullet()
+        {
+            List<Bullet> NeedToDestroy = new List<Bullet>();
+            foreach (Bullet bullet in Bullet_List)
+            {
+                if(bullet.IsbulletDestory==true)
+                {
+                    NeedToDestroy.Add(bullet);
+                }
+            }
+            foreach(Bullet bullet in NeedToDestroy)
+            {
+                Bullet_List.Remove(bullet);
+            }
+
         }
 
+        public static void DestroyWall(Stationary_Obj wall)
+        {
+            Wall_List.Remove(wall); 
+        }
 
-
-
+     
         private static void EnemyBorn()
         {
             enemyBornCount++;
@@ -169,6 +193,26 @@ namespace C_sharpe_3tankfight
         {
             return Boss.GetRectangle().IntersectsWith(rt);
         }
+        public static Enemy_Tank IsCollidedEnemyTank(Rectangle rt)
+        {
+            foreach(Enemy_Tank tank in Enemytank_List)
+            {
+                if (tank.GetRectangle().IntersectsWith(rt))
+                {
+                    return tank;
+                }
+
+            }
+            return null;
+
+
+        }
+        public static void DestroyTank(Enemy_Tank tank)
+        {
+
+            Enemytank_List.Remove(tank);
+        }
+
         public static void CreateMap()
         {
             CreateWall(1, 1, 5,Resources.wall, Wall_List);

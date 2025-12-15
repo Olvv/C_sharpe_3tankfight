@@ -13,7 +13,7 @@ namespace C_sharpe_3tankfight
   
     class Enemy_Tank:Moving_Obj
     {
-
+        private Object _lock = new Object();
         private Random updir = new Random();
         public Enemy_Tank(int x, int y, int speed, Bitmap Bitmapdown, Bitmap Bitmapup, Bitmap Bitmapleft, Bitmap Bitmapright)
         {
@@ -29,7 +29,13 @@ namespace C_sharpe_3tankfight
             this.Dir = Direciton.Down;
         }
 
-
+        public override void DrawSelf()
+        {
+            lock (_lock)
+            { 
+                base.DrawSelf();
+        }
+        }
 
 
         public override void Update()

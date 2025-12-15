@@ -46,19 +46,19 @@ namespace C_sharpe_3tankfight
                         break;
                 }
 
-                //lock (_lock)
-                //{
-                if (bitmap != null)
+                lock (_lock)
+                {
+                    if (bitmap != null)
                 {
                     Width = bitmap.Width;
                     Height = bitmap.Height;
                 }
-               
-                //}
+
+                }
 
             }
         } 
-
+         
         protected override Image GetImage()
         {
 
