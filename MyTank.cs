@@ -197,7 +197,7 @@ namespace C_sharpe_3tankfight
 
 
             }
-
+            SoundManger.Playfire();
               GameObjectManager.CreateBullet(x,y, Source.MyTank,Dir);
         }
         public  void keyup(KeyEventArgs args)

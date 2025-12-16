@@ -145,6 +145,7 @@ namespace C_sharpe_3tankfight
             }
             //generate enemy
             //Random rd = new Random();
+            //SoundManger.Playadd();
            Random rd = new Random();
         int index = rd.Next(0, 3);
             Point position = points[index];

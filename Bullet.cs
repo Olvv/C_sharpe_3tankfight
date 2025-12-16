@@ -111,6 +111,8 @@ namespace C_sharpe_3tankfight
                IsbulletDestory=true ;
                 GameObjectManager.DestroyWall(wall);
                 GameObjectManager.CreateExplosion(X_Explosion, Y_Explosion);
+                SoundManger.Playblast();
+                
                 return;
             }
 
@@ -125,6 +127,10 @@ namespace C_sharpe_3tankfight
             if (GameObjectManager.IsCollidedBoss(rect))
             {
                 //ChangeDirection();
+
+
+                SoundManger.Playblast();
+                GameFramework.Gameover();
                 return;
             }
 
@@ -137,6 +143,7 @@ namespace C_sharpe_3tankfight
                     IsbulletDestory=true;
                     GameObjectManager.DestroyTank(tank);
                     GameObjectManager.CreateExplosion(X_Explosion, Y_Explosion);
+                    SoundManger.Playblast();
                     return;
                 }
                 return;
@@ -149,6 +156,7 @@ namespace C_sharpe_3tankfight
                     IsbulletDestory=true;
                     GameObjectManager.CreateExplosion(X_Explosion, Y_Explosion);
                     myTank.Takedamage();
+                    SoundManger.Playerhit();
                     return;
                 }
 
